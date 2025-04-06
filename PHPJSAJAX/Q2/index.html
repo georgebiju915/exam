@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Login Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+    <p id="responseMessage"></p>
+<script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'login.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('responseMessage').innerText = xhr.responseText;
+                    if(xhr.responseText === "Login successful") {
+                        // Redirect to another page or perform other actions
+                        window.location.href = "welcome.html";
+                    }
+                }
+            };
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var data = 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+
+            xhr.send(data);
+        });
+    </script>
+</body>
+</html>

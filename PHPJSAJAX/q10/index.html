@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Character Counter</title>
+    <style>
+        #charCount {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Text Area with Character Counter</h2>
+    <textarea id="textInput" rows="10" cols="30" placeholder="Type something..."></textarea>
+    <div id="charCount">Characters: 0</div>
+
+    <script>
+        $(document).ready(function() {
+            $('#textInput').on('input', function() {
+                var charCount = $(this).val().length;
+                $('#charCount').text('Characters: ' + charCount);
+            });
+        });
+    </script>
+</body>
+</html>

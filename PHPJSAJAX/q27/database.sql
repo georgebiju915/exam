@@ -1,0 +1,9 @@
+CREATE DATABASE subscription_db;
+
+USE subscription_db;
+
+CREATE TABLE subscribers (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

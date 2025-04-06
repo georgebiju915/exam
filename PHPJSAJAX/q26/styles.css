@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.new-post {
+    margin-bottom: 20px;
+}
+
+.new-post textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.new-post button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.posts {
+    margin-top: 20px;
+}
+
+.post {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.post button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

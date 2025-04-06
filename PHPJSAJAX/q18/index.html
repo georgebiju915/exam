@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll System</title>
+    <style>
+        .vote-option {
+            margin-bottom: 10px;
+        }
+        .vote-count {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Poll: Which is your favorite programming language?</h2>
+    <div id="pollOptions">
+        <!-- Poll options will be loaded here -->
+    </div>
+
+    <script>
+        function loadPollOptions() {
+            $.ajax({
+                url: 'load_poll_options.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#pollOptions').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            loadPollOptions();
+
+            $(document).on('click', '.vote-btn', function() {
+                var optionId = $(this).data('id');
+
+                $.ajax({
+                    url: 'vote.php',
+                    method: 'POST',
+                    data: { id: optionId },
+                    success: function(response) {
+                        loadPollOptions();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

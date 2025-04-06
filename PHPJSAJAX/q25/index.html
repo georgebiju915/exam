@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Rating System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Rate Our Products</h2>
+        <div class="products">
+            <div class="product" data-id="1">
+                <h3>Product 1</h3>
+                <form class="rating-form">
+                    <input type="text" name="username" placeholder="Your Name" required>
+                    <select name="rating" required>
+                        <option value="">Rate</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+                <div class="feedback"></div>
+            </div>
+            <div class="product" data-id="2">
+                <h3>Product 2</h3>
+                <form class="rating-form">
+                    <input type="text" name="username" placeholder="Your Name" required>
+                    <select name="rating" required>
+                        <option value="">Rate</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+                <div class="feedback"></div>
+            </div>
+            <!-- Repeat similar blocks for Product 3, Product 4, and Product 5 -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

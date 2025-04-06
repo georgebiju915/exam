@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Section</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Comments</h2>
+    <form id="commentForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" required></textarea><br><br>
+        <button type="submit">Post Comment</button>
+    </form>
+    <div id="commentsSection">
+        <!-- Comments will be loaded here -->
+    </div>
+
+    <script>
+        function loadComments() {
+            $.ajax({
+                url: 'load_comments.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#commentsSection').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            loadComments();
+
+            $('#commentForm').on('submit', function(event) {
+                event.preventDefault();
+
+                var username = $('#username').val();
+                var comment = $('#comment').val();
+
+                $.ajax({
+                    url: 'post_comment.php',
+                    method: 'POST',
+                    data: {
+                        username: username,
+                        comment: comment
+                    },
+                    success: function(response) {
+                        $('#commentForm')[0].reset();
+                        loadComments();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

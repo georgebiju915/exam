@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Register</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#registrationForm').on('submit', function(event) {
+                event.preventDefault();
+
+                var name = $('#name').val();
+                var email = $('#email').val();
+
+                $.ajax({
+                    url: 'register.php',
+                    method: 'POST',
+                    data: {
+                        name: name,
+                        email: email
+                    },
+                    success: function(response) {
+                        $('#message').html(response);
+                        $('#registrationForm')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

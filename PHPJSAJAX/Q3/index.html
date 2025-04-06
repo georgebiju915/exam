@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post with Like Button</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Blog Post Title</h2>
+    <p>Blog post content...</p>
+    <button id="likeButton">Like</button>
+    <p id="likeCount">Likes: 0</p>
+
+    <script>
+        document.getElementById('likeButton').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'like.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('likeCount').innerText = 'Likes: ' + xhr.responseText;
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+</body>
+</html>

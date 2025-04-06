@@ -1,0 +1,9 @@
+CREATE DATABASE blog_system;
+
+USE blog_system;
+
+CREATE TABLE posts (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

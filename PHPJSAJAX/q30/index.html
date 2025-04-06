@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <form id="currencyForm">
+            <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+            <select id="fromCurrency" name="fromCurrency" required>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <select id="toCurrency" name="toCurrency" required>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

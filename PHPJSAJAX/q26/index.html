@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Blog System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Blog Posts</h2>
+        <div class="new-post">
+            <textarea id="postContent" placeholder="Write your post here..."></textarea>
+            <button id="addPostBtn">Add Post</button>
+        </div>
+        <div class="posts" id="postsContainer">
+            <!-- Posts will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

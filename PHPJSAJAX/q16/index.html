@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post with Like Button</title>
+    <style>
+        .like-btn {
+            cursor: pointer;
+            color: blue;
+        }
+        .like-count {
+            margin-left: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Blog Post Title</h2>
+    <p>This is the content of the blog post.</p>
+    <div id="likeSection">
+        <span class="like-btn" id="likeButton">Like</span>
+        <span class="like-count" id="likeCount">0</span>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            function loadLikes() {
+                $.ajax({
+                    url: 'fetch_likes.php',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#likeCount').text(data);
+                    }
+                });
+            }
+
+            $('#likeButton').on('click', function() {
+                $.ajax({
+                    url: 'like_post.php',
+                    method: 'POST',
+                    success: function(response) {
+                        loadLikes();
+                    }
+                });
+            });
+
+            loadLikes();
+        });
+    </script>
+</body>
+</html>

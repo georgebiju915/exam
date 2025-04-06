@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Task Manager</h2>
+    <form id="taskForm">
+        <input type="text" id="task" name="task" placeholder="Enter your task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <ul id="taskList">
+        <!-- Tasks will be loaded here -->
+    </ul>
+
+    <script>
+        function loadTasks() {
+            $.ajax({
+                url: 'load_tasks.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#taskList').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            loadTasks();
+
+            $('#taskForm').on('submit', function(event) {
+                event.preventDefault();
+
+                var task = $('#task').val();
+
+                $.ajax({
+                    url: 'add_task.php',
+                    method: 'POST',
+                    data: { task: task },
+                    success: function(response) {
+                        $('#taskForm')[0].reset();
+                        loadTasks();
+                    }
+                });
+            });
+
+            $(document).on('click', '.complete-task', function() {
+                var taskId = $(this).data('id');
+
+                $.ajax({
+                    url: 'complete_task.php',
+                    method: 'POST',
+                    data: { id: taskId },
+                    success: function(response) {
+                        loadTasks();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

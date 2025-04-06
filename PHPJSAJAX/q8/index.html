@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Student Attendance</h2>
+    <form id="attendanceForm">
+        <label for="student">Student Name:</label>
+        <input type="text" id="student" name="student" required>
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+        </select>
+        <button type="submit">Mark Attendance</button>
+    </form>
+    <h3>Attendance List</h3>
+    <ul id="attendanceList">
+        <!-- Attendance entries will be loaded here -->
+    </ul>
+
+    <script>
+        function loadAttendance() {
+            $.ajax({
+                url: 'load_attendance.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#attendanceList').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            loadAttendance();
+
+            $('#attendanceForm').on('submit', function(event) {
+                event.preventDefault();
+
+                var student = $('#student').val();
+                var status = $('#status').val();
+
+                $.ajax({
+                    url: 'mark_attendance.php',
+                    method: 'POST',
+                    data: {
+                        student: student,
+                        status: status
+                    },
+                    success: function(response) {
+                        $('#attendanceForm')[0].reset();
+                        loadAttendance();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

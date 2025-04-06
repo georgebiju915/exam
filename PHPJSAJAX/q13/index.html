@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Product Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Search Products</h2>
+    <input type="text" id="searchBox" placeholder="Type a product name...">
+    <div id="results"></div>
+
+    <script>
+        $(document).ready(function(){
+            $('#searchBox').on('input', function(){
+                var query = $(this).val();
+
+                $.ajax({
+                    url: 'search.php',
+                    method: 'GET',
+                    data: { q: query },
+                    success: function(data) {
+                        $('#results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Users</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Online Users</h2>
+    <div id="onlineUsers">
+        <!-- Online users will be loaded here -->
+    </div>
+
+    <script>
+        function updateStatus() {
+            $.ajax({
+                url: 'update_status.php',
+                method: 'POST',
+                success: function(data) {
+                    loadOnlineUsers();
+                }
+            });
+        }
+
+        function loadOnlineUsers() {
+            $.ajax({
+                url: 'fetch_online_users.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#onlineUsers').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            updateStatus();
+            setInterval(updateStatus, 5000); // Update status every 5 seconds
+            setInterval(loadOnlineUsers, 5000); // Load online users every 5 seconds
+        });
+    </script>
+</body>
+</html>
